@@ -1,0 +1,32 @@
+Notes:
+5/12/19
+Your errors rn will only come from the third window's button text, trying to make it
+determine the hangman word on press of the button.
+5/13/19
+Error is on line 78 of kivy code
+5/14/19
+Spent seemingly all day trying to get the kivy file to access my hangman 
+word from python. 
+In the end i had to create a new class that made an instance of the hangman class in my
+hangman1.py python file, and access that value from the current window 
+with root.hangman. Needed to use StringProperty.
+Also fixed transitions.
+Toook me forever to implement the letter implementatation function:
+	hangman = ObjectProperty(IDK.x.selecting_hangman())
+	def btn(self):
+		blank_rep = IDK.x.letter_representation(self.hangman)
+		print(blank_rep)
+
+so that was fun.
+
+8:31pm
+Trying my best to implement test_guessed_letter, trying to figure out the parameters.
+Trying to add widgets when buttons are pressed, not going well
+
+5/15/19
+Made great progress today. Learned to affect widgets dynamically (by removing them, updating text)
+Implemented nitty gritty successfully!
+Just have to clean most things up, have hangman pic appear, parameters on 
+when game restarts/ends/loses/wins
+
+Most of the heavy duty code is here though

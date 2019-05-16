@@ -1,0 +1,126 @@
+<WindowManager>:
+
+<Button>:
+
+	color:1,0,0,1
+	background_normal: ""
+	background_color:1,1,1,1
+
+<MainWindow>:
+	name: "main"
+	btna : btna
+	canvas:
+		Color:
+			rgba: 1,1,1,1
+		Rectangle:
+			pos:self.pos
+			size:self.size
+	FloatLayout:
+		Button: 
+			id: btna
+			text: "Begin"
+			font_size:40
+			pos_hint: {"x":.35, "top":.65}
+			size_hint : .3,.3
+			on_release:app.root.current = "second"
+		Button:
+			id: btnb
+			text: "Exit Game"		
+			font_size:25
+			size_hint : .3,.3
+			on_release: quit()
+
+<SecondWindow>:
+	name: "second"
+	canvas:
+		Color:
+			rgba: 1,1,1,1
+		Rectangle:
+			pos:self.pos
+			size:self.size
+	FloatLayout:
+		Label:
+			id:new
+			text: "Welcome To Hangman"
+			color: 0,0,0,1
+			font_size:40
+			pos_hint: {"x":.35, "top":1}
+			size_hint: .3,.3
+		Label:
+			text: root.prompt
+			font_size : 18
+			color: 0,0,0,1
+		Button:
+			text: "Continue?"
+			font_size : 25
+			color: 0,0,0,1
+			pos_hint: {"x":.2, "y": .25}
+			size_hint: .2,.1
+			on_press:root.selecting_hangman()
+			on_release:
+				app.root.current = "third"
+				root.manager.transition.direction = "left"
+		Button:
+			text: "Exit?"
+			font_size : 25
+			color: 0,0,0,1
+			pos_hint: {"x":.7, "y":.25 }
+			size_hint: .2,.1
+			on_press: quit()
+
+<ThirdWindow>:
+	name: "third"
+	guessed_letter:guessed_letter
+	canvas:
+		Color:
+			rgba: 0,0,1,.75
+		Rectangle:
+			pos:self.pos
+			size:self.size
+	FloatLayout:
+		id: float_3
+		Button:
+			id: btn_3
+			text: root.hangman2
+			font_size : 18
+			color: 0,0,0,1
+			size_hint: .3,.3
+			pos_hint: {"x":.25, "y":0}
+			on_press :
+				text: root.btn()
+	
+		Button:	
+			text: "Back"
+			font_size : 18
+			color: 1,0,0,1
+			background_color : 0,0,1,.75
+			size_hint: .09,.09
+			pos_hint: {"x":0, "top":1}	
+			on_release:
+				app.root.current = "second"		
+				root.manager.transition.direction = "right"
+		TextInput:
+			size_hint: .3,.3
+			text: "Guess Letter/Word Here"
+			pos_hint: {'x':.5, 'y': .7}
+			id: guessed_letter
+			multiline: False
+		Button:
+			text:"Submit"
+			color: 0,0,0,1
+			size_hint: .3,.3
+			pos_hint: {"x":.5, "y":0} 			
+			on_release:
+				root.call_method(root.count)
+				root.btn_2(root.guessed_letter, root.guessed_letters )
+				root.call_method_3(root.set_in)
+		Button:
+			id: set
+			text:root.set_in
+			color: 0,0,0,1
+			size_hint: .3,.3
+			pos_hint: {"x":.1, "y":.5} 
+
+		
+
+
