@@ -58,7 +58,6 @@
 
 <ThirdWindow>:
 	name: "third"
-	guessed_letter:guessed_letter
 	FloatLayout:
 		id: float_3
 		Button:	
@@ -81,29 +80,6 @@
 			on_press :
 				text: root.call_btn_rep()
 			
-		Button:
-			text:"Submit"
-			color: 0,0,0,1
-			size_hint: .3,.3
-			pos_hint: {"x":.5, "y":0} 			
-			on_release:
-				root.test_guessed(root.count)
-				root.call_btn_submit(root.guessed_letter, root.guessed_letters )
-				root.call_btn_rep()
-				root.call_leftover_options(root.guessed_letters)
-				root.create_alphabuttons()
-		Label:
-			id: label_possible_guesses
-			text: "The Alphabet"
-			color: 0,0,0,1
-			size_hint: .3,.3
-			pos_hint: {"x":.7, "y":.3} 	
-			
-		TextInput:
-			id: guessed_letter
-			size_hint: .3,.3
-			text: "Guess Letter/Word Here"
-			pos_hint: {'x':.5, 'y': .7}
-			multiline: False
+
 
 

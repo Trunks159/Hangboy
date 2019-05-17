@@ -84,6 +84,7 @@ class ManHangs():
 								 |
 				_________________|_________
 			""")
+		print("Here is current count from hangman1: " , count)
 		return count
 
 	def nitty_gritty(self, hangman, guessed_letter, guessed_letters):
