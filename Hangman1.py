@@ -1,8 +1,16 @@
 import random
 import sys
-from kivy.lang import Builder
+from kivy.app import App
+from kivy.uix.textinput import TextInput
+from kivy.uix.widget import Widget
+from kivy.uix.label import Label
 from kivy.uix.button import Button
-
+from kivy.uix.floatlayout import FloatLayout
+from kivy.properties import ObjectProperty
+from kivy.graphics import Color, Rectangle
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.window import Window
 class ManHangs():
 	prompt = """Hello my good sir or mam, or animal or alien or whatever you\nare. My name is Jordan, and we're gonna play hangman cus I suck\nat programming and only know how to make this game.\nI'm sure you know how to play it already though.\nHere's a representation of how many letters there are: """
 	#	letter_representation()
@@ -84,7 +92,6 @@ class ManHangs():
 								 |
 				_________________|_________
 			""")
-		print("Here is current count from hangman1: " , count)
 		return count
 
 	def nitty_gritty(self, hangman, guessed_letter, guessed_letters):

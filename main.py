@@ -52,18 +52,20 @@ class ThirdWindow(Screen, IDK):
 		self.create_buttons()
 
 	def create_buttons(self): #properties of each button
-		k = 0
-		j = .6
+		k = .65
+		j = .3
+		c = 0
 		alphabet = "abcdefghijklmnopqrstuvwxyz"
 		for letter in alphabet:
 			a = CustomButton(id = letter, text= letter, pos_hint = {'x': k, 'y':j}, size_hint = (.05,.1))
 			self.add_widget(a)
+			c +=1
 			k += .05
-			if  (k == .3 ):
+			if c == 7:
 				j -= .1
-				k = 0.0
+				k = 0.65
+				c = 0	
 			
-		
 		
 sm = WindowManager()
 sm.add_widget(MainWindow())
