@@ -22,10 +22,10 @@ class ManHangs():
 		hangman = random.choice(word_collection) #randomly chooses a word
 		return hangman
 	def letter_representation(self, hangman): #blank representation of word
-		set_ina = ""
+		set_in = ""
 		for letter in hangman:
-			set_ina += "_ "
-		return set_ina
+			set_in += "_ "
+		return set_in
 	
 	def test_guessed_letter(self, guess, secret_word, count):
 		
@@ -91,19 +91,22 @@ class ManHangs():
 		print(hangman)
 		print(guessed_letter)
 		print(guessed_letters)
-		set_in = ""
-		for letter in hangman: # MOST DIFFICULT PART OF THE PROGRAM TO CONSTRUCT
-			j = 1
+		if guessed_letters == []:
+			set_in = self.letter_representation(hangman)
+		else:
+			set_in = ""
+			for letter in hangman: # MOST DIFFICULT PART OF THE PROGRAM TO CONSTRUCT
+				j = 1
 
-			for guessed_letter in guessed_letters: #goes through each letter in bank
-				if letter == guessed_letter: 
-					set_in += guessed_letter
-					break
-				elif (letter != guessed_letter) and (j == len(guessed_letters)):
-					set_in += " _"
-				j += 1
-		print("This is set_in: ")
-		print(set_in)
+				for guessed_letter in guessed_letters: #goes through each letter in bank
+					if letter == guessed_letter: 
+						set_in += guessed_letter
+						break
+					elif (letter != guessed_letter) and (j == len(guessed_letters)):
+						set_in += " _"
+					j += 1
+			print("This is set_in: ")
+			print(set_in)
 		return set_in
 
 
@@ -147,4 +150,3 @@ def main():
 			continue
 		else:
 			break
-#prompt_user()

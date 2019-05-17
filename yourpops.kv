@@ -9,12 +9,6 @@
 <MainWindow>:
 	name: "main"
 	btna : btna
-	canvas:
-		Color:
-			rgba: 1,1,1,1
-		Rectangle:
-			pos:self.pos
-			size:self.size
 	FloatLayout:
 		Button: 
 			id: btna
@@ -32,12 +26,6 @@
 
 <SecondWindow>:
 	name: "second"
-	canvas:
-		Color:
-			rgba: 1,1,1,1
-		Rectangle:
-			pos:self.pos
-			size:self.size
 	FloatLayout:
 		Label:
 			id:new
@@ -71,24 +59,8 @@
 <ThirdWindow>:
 	name: "third"
 	guessed_letter:guessed_letter
-	canvas:
-		Color:
-			rgba: 0,0,1,.75
-		Rectangle:
-			pos:self.pos
-			size:self.size
 	FloatLayout:
 		id: float_3
-		Button:
-			id: btn_3
-			text: root.hangman2
-			font_size : 18
-			color: 0,0,0,1
-			size_hint: .3,.3
-			pos_hint: {"x":.25, "y":0}
-			on_press :
-				text: root.btn()
-	
 		Button:	
 			text: "Back"
 			font_size : 18
@@ -99,28 +71,39 @@
 			on_release:
 				app.root.current = "second"		
 				root.manager.transition.direction = "right"
-		TextInput:
+		Button:
+			id: btn_rep
+			text: "               Hit For \nRepresentation of Word"
+			font_size : 18
+			color: 0,0,0,1
 			size_hint: .3,.3
-			text: "Guess Letter/Word Here"
-			pos_hint: {'x':.5, 'y': .7}
-			id: guessed_letter
-			multiline: False
+			pos_hint: {"x":.25, "y":0}
+			on_press :
+				text: root.call_btn_rep()
+			
 		Button:
 			text:"Submit"
 			color: 0,0,0,1
 			size_hint: .3,.3
 			pos_hint: {"x":.5, "y":0} 			
 			on_release:
-				root.call_method(root.count)
-				root.btn_2(root.guessed_letter, root.guessed_letters )
-				root.call_method_3(root.set_in)
-		Button:
-			id: set
-			text:root.set_in
+				root.test_guessed(root.count)
+				root.call_btn_submit(root.guessed_letter, root.guessed_letters )
+				root.call_btn_rep()
+				root.call_leftover_options(root.guessed_letters)
+				root.create_alphabuttons()
+		Label:
+			id: label_possible_guesses
+			text: "The Alphabet"
 			color: 0,0,0,1
 			size_hint: .3,.3
-			pos_hint: {"x":.1, "y":.5} 
-
-		
+			pos_hint: {"x":.7, "y":.3} 	
+			
+		TextInput:
+			id: guessed_letter
+			size_hint: .3,.3
+			text: "Guess Letter/Word Here"
+			pos_hint: {'x':.5, 'y': .7}
+			multiline: False
 
 
