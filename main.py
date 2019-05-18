@@ -13,7 +13,6 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 
 
-
 Builder.load_file("yourpops.kv")
 class IDK():
 	x = mh()
