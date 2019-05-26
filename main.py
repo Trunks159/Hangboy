@@ -34,6 +34,9 @@ class CustomButton(Button,IDK): #blueprint for my special buttons that delete th
             guessed_letters.append(guessed_letter) #add that letter to the list of used letters for logic
             count =  IDK.x.test_guessed_letter(guessed_letter, hangman, count) #sees if it was right or wrong and adjusts count accordingly
             self.parent.ids.btn_rep.text = IDK.x.nitty_gritty(hangman, guessed_letter, guessed_letters) #the representation of all the letters guessed
+         
+            if '_' not in self.parent.ids.btn_rep.text:
+                sm.current = "forth"
             
             if count == 1:
                 self.parent.ids.new_image.source = 'hangmanpic1.png'
@@ -43,8 +46,7 @@ class CustomButton(Button,IDK): #blueprint for my special buttons that delete th
                 self.parent.ids.new_image.source = 'hangmanpic3.png'
             elif count == 4:
                 self.parent.ids.new_image.source = 'hangmanpic4.png'
-                self.parent.add_widget(Button(text = "YOU LOSE"))
-                sm.current = "forth"
+                sm.current = "fifth"
             if count != 4:
                 self.parent.remove_widget(self) #suicides itself
             return True    # consumed on_touch_down & stop propagation / bubbling
@@ -79,12 +81,16 @@ class ThirdWindow(Screen, IDK):
 				c = 0	
 class ForthWindow(Screen,mh):
 	pass
+
+class FifthWindow(Screen):
+	pass
 	
 sm = WindowManager()
 sm.add_widget(MainWindow())
 sm.add_widget(SecondWindow())
 sm.add_widget(ThirdWindow())
 sm.add_widget(ForthWindow())
+sm.add_widget(FifthWindow())
 
 class HangmanApp(App):
 	def build(self):
