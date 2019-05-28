@@ -39,3 +39,53 @@ Plan To Make the Game Start Over:
 			allow_stretch: True
 
 <Forth
+
+
+Heres what happens:
+
+1. Prompt tells u how to hangman
+2. cpu selects hangman
+
+
+Plan:
+Make it so that button info of a deleted button is stored in a dictionary
+so on_press:
+
+create a dictionary ("name")
+name = {"text":self.text, "pos_hint" = self.pos_hint, size_hin }
+well, actually, just use the "create button" function for those buttons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
