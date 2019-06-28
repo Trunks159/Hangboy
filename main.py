@@ -8,7 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.image import Image
 from kivy.properties import ObjectProperty
-from kivy.graphics import Color, Rectangle
+from kivy.graphics import Color, Rectangle, Line
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
@@ -24,6 +24,14 @@ hangman = y.selecting_hangman() #randomly selects hangman
 deleted_buttons = [] #bank of letters used/deleted
 
 class CustomButton(Button): #blueprint for my special buttons that delete themselves on touch
+    def __init__(self, **kwargs):
+        super(CustomButton, self).__init__(**kwargs)
+        self.canvas.add(Color(0,0,1))
+        self.canvas.add(Rectangle(size=(50,50)))
+        self.canvas.add(Color(0,1,1))
+        self.canvas.add(Rectangle(size=(50,50), pos = [50,50]))
+	#			Rectangle(pos = [a.pos_hint["x"],a.pos_hint["y"]], size = [self.a.size_hint[0],.01]) 
+				
     def on_touch_down(self, touch):
         global count
         global guessed_letters
@@ -54,40 +62,42 @@ class CustomButton(Button): #blueprint for my special buttons that delete themse
                 btn_info = {"text" : self.text, id : self.id, "pos_hint" : self.pos_hint, "size_hint": self.size_hint} #stores info of button in dictionary before destroying itself
                 deleted_buttons.append(btn_info) #adds the dictionary to a list
                 self.parent.remove_widget(self) #suicides itself
-            return True    # consumed on_touch_down & stop propagation / bubbling
-        return super(CustomButton, self).on_touch_down(touch)
-
 
 class WindowManager(ScreenManager):
 	pass
+	
 class MainWindow(Screen):
 	pass
-class SecondWindow(Screen, mh):
-	pass
+		
 class ThirdWindow(Screen):
 	global hangman
 
 	def __init__(self, **kwargs):
 		super(ThirdWindow, self).__init__(**kwargs)
 		self.create_buttons()
-		self.btn_rep =((Label(id = "btn_rep", text= "Secret Word", font_size = 30, color = (1,1,1,1), size_hint =  (.3, .3), pos_hint = {'x':.325-.15,'y':.2-.15})))
+		self.btn_rep =((Label(id = "btn_rep", text= "Secret Word", font_size = 30, color = (1,1,1,1), size_hint =  (.3, .05), pos_hint = {'x':.325,'y':.5})))
 		self.add_widget(self.btn_rep)
-		self.new_image = Image(source = 'hangmanpic0.png', size_hint = (.6,.7), pos_hint = {'x':.2, 'y': .32}, allow_stretch = True)
+		self.new_image = Image(source = 'hangmanpic0.png', size_hint = (.6,.7), pos_hint = {'x':.2, 'y': .5}, allow_stretch = True)
 		self.add_widget(self.new_image)		
 
 	def create_buttons(self): #properties of each button
-		k = .65
+		borders = [.01,.01]
+		start = borders[0]
+
+		k = start
 		j = .3
 		c = 0
+		cwants = 10
 		alphabet = "abcdefghijklmnopqrstuvwxyz"
 		for letter in alphabet:
-			a = CustomButton(id = letter, text= letter, pos_hint = {'x': k, 'y':j}, size_hint = (.05,.1))
+			a = CustomButton(id = letter, text= letter, pos_hint = {'x': k, 'y':j}, size_hint = ((1-sum(borders))/cwants,.15))
+			
 			self.add_widget(a)
 			c +=1
-			k += .05
-			if c == 7:
-				j -= .1
-				k = 0.65
+			k += a.size_hint[0]
+			if c == cwants:
+				j -= a.size_hint[1]
+				k = start
 				c = 0	
 		
 
@@ -97,8 +107,6 @@ class ThirdWindow(Screen):
 		for button in deleted_buttons:
 			self.add_widget(CustomButton(id = button["text"], text= button["text"], pos_hint = button["pos_hint"], size_hint = button["size_hint"]))
 			print("TEST: " , button["text"])
-
-		
 		
 class ForthWindow(Screen):
 	def test(self):
@@ -114,8 +122,7 @@ class ForthWindow(Screen):
 		s3.restore_buttons()
 		s3.btn_rep.text = "Secret Word" 
 		s3.new_image.source = "hangmanpic0.png"
-		
-	
+			
 class FifthWindow(Screen):
 	def test(self):
 		global guessed_letters
@@ -131,10 +138,8 @@ class FifthWindow(Screen):
 		s3.btn_rep.text = "Secret Word" 
 		s3.new_image.source = "hangmanpic0.png"
 		
-	
 sm = WindowManager()
 sm.add_widget(MainWindow())
-sm.add_widget(SecondWindow())
 sm.add_widget(ThirdWindow())
 sm.add_widget(ForthWindow())
 sm.add_widget(FifthWindow())
