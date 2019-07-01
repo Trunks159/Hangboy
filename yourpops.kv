@@ -1,10 +1,11 @@
 <WindowManager>:
 
-<Button>:
+<CustomButton>:
+	color : 0,0,0,1
 
-	color:1,0,0,1
+<Button>:
 	background_normal: ""
-	background_color:1,1,1,1
+
 
 <MainWindow>:
 	name: "main"
@@ -12,21 +13,26 @@
 	FloatLayout:
 		Button: 
 			id: btna
-			text: "Begin"
+			text: "Start Game"
+			font_name: 'C:/Windows/Fonts/ALGER.ttf'
 			font_size:40
 			pos_hint: {"x":.35, "top":.65}
 			size_hint : .3,.3
 			on_release:app.root.current = "third"
+			background_color:0,0,0,0
+			color:0,0,0,1
 		Button:
 			id: btnb
 			text: "Exit Game"		
 			font_size:25
 			size_hint : .3,.3
 			on_release: quit()
+			color:0,0,0,1
+			background_color:0,0,0,0
 
 <ThirdWindow>:
 	name: "third"
-	FloatLayout:
+
 	
 	
 	
@@ -40,6 +46,7 @@
 		on_release: 
 			root.test()
 			app.root.current = "third"
+		color:1,1,1,1
 
 <FifthWindow>:
 	name: "fifth"
@@ -50,4 +57,5 @@
 		on_release: 
 			root.test()
 			app.root.current = "third"
+		color : 1,1,1,1
 
