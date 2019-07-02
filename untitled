@@ -1,0 +1,30 @@
+            
+            if count == 1:
+                self.parent.new_image.source = 'dcc6c4ccf27c4603cda0d402cbca7a22.png'
+                self.parent.skulls.color = [1,0,0,1]
+                Window.clearcolor = [1,1 - (.2*count),0,1]
+         
+            elif count == 2:
+                self.parent.new_image.source = 'giphy.gif'
+                self.parent.skulls[1].color = [1,0,0,1]
+                Window.clearcolor = [1,1 - (.2*count),0,1]
+                
+            elif count == 3:
+                self.parent.new_image.source = 'hangmanpic3.png'
+                self.parent.skulls[2].color = [1,0,0,1]
+                Window.clearcolor = [1,1 - (.2*count),0,1]
+            elif count == 4:
+                self.parent.new_image.source = 'hangmanpic4.png'
+                self.parent.skulls.color = [1,0,0,1]
+                sm.current = "fifth"
+             		f.canvas.add(Color(1,1,1))
+		f.canvas.add(Rectangle(size=(70,100)))
+		f.canvas.add(Color(0,1,1))
+		f.canvas.add(Rectangle(size=self.size))
+		y = mh()
+guessed_letters = [] #bank of letters guessed, global variable
+guessed_letter = "" # keeps track of the last guessed letter
+count = 0 #how many times user has been wrong
+hangman = y.selecting_hangman() #randomly selects hangman
+deleted_buttons = [] #bank of letters used/deleted
+current_color = []

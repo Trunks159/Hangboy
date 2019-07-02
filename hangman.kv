@@ -1,6 +1,11 @@
 <WindowManager>:
 
-<CustomButton>:
+<Skull>
+	source : "Pictures/Skull.png"
+	size_hint : [.1,.1]
+	allow_stretch : True
+
+<AlphaButton>:
 	color : 0,0,0,1
 
 <Button>:
@@ -37,19 +42,23 @@
 	
 	
 	
-<ForthWindow>:
-	name: "forth"
+<Win>:
+	name: "win"
 	
 	Button:
 		id: forth_label
 		text: "You Win"
+		font_name: 'C:/Windows/Fonts/LSANS.ttf'
+		font_size:40
 		on_release: 
 			root.test()
 			app.root.current = "third"
-		color:1,1,1,1
+		#color:1,1,1,1
+		Image:
+			source : "Pictures/correct.gif"
 
-<FifthWindow>:
-	name: "fifth"
+<Lose>:
+	name: "lose"
 	id: "wassup"
 	Button:
 		id: fifth_label
