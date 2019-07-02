@@ -1,14 +1,9 @@
-import random	
-	
 def test_guessed_letter(guess, secret_word):
-	count = "right"
-	if guess not in secret_word: #if guessed is wrong, add to counter
-		count = "wrong"
-	return count
+    return guess in secret_word
 
 def make_placeholder(hangman, guessed_letter, guessed_letters):
 	placeholder = ""
-	for letter in hangman: # MOST DIFFICULT PART OF THE PROGRAM TO CONSTRUCT
+	for letter in hangman: 
 		if guessed_letters != []:
 			j = 1
 			for guessed_letter in guessed_letters: #goes through each letter in bank
