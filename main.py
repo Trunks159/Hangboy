@@ -23,6 +23,14 @@ Window.top = 25
 
 Builder.load_file("hangman.kv")
 
+ def make_placeholder(hangman, guessed_letter, guessed_letters):
+	placeholder = ""
+	for letter in hangman: # MOST DIFFICULT PART OF THE PROGRAM TO CONSTRUCT
+	for letter in hangman: 
+		if guessed_letters != []:
+			j = 1
+			for guessed_letter in guessed_letters: #goes through
+
 class InitialStates():
 	def __init__(self):
 		self.guessed_letters = [] #bank of letters guessed, global variable
@@ -71,13 +79,13 @@ class AlphaButton(Button): #blueprint for my special buttons that delete themsel
            # print(f"\nCustomButton.on_touch_down: text/id={self.id}")
             gs.guessed_letter = self.id  #the guessed letter used for logic is the id of the button
             gs.guessed_letters.append(gs.guessed_letter) #add that letter to the list of used letters for logic
-            gs.count = hf.test_guessed_letter(gs.guessed_letter, gs.hangman)
-            gs.count_log.append(gs.count) #sees if it was right or wrong and adjusts count accordingly
+            gs.current = gs.guessed_letter in gs.hangman)
+            gs.count_log.append(gs.current) #sees if it was right or wrong and adjusts count accordingly
             self.parent.placeholder.text = hf.make_placeholder(gs.hangman, gs.guessed_letter, gs.guessed_letters) #the representation of all the letters guessed
             if '_' not in self.parent.placeholder.text: #if all letters are filled out, go to the win screen
                 sm.current = "win"
                 Window.clearcolor = [0,0,1,1]
-            if gs.count == "wrong":
+            if gs.current == False:
                 self.parent.wrong(gs.count_count_log())            
            # if gs.count_count_log() != 7:
             btn_info = {"text" : self.text, id : self.id, "pos_hint" : self.pos_hint, "size_hint": self.size_hint} #stores info of button in dictionary before destroying itself
