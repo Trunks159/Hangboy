@@ -1,0 +1,65 @@
+<StartWindow>:
+	name: "start"
+	FloatLayout:
+		Button: 
+			text: "Start Game"
+			font_name: 'Fonts/ALGER.ttf'
+			font_size:40
+			pos_hint: {"x":.35, "top":.65}
+			size_hint : .3,.3
+			on_release:app.root.current = "game"
+			background_color:0,0,0,0
+			color:0,0,0,1
+		Button:
+			text: "Exit Game"	
+			font_name: 'Fonts/ALGER.ttf'	
+			font_size:25
+			size_hint : .3,.3
+			on_release: quit()
+			color:0,0,0,1
+			background_color:0,0,0,0
+<Game>:
+	name : "game"
+	RelativeLayout:
+		id: layout
+		Label: 
+			id : place
+			text: root.placeholder
+			font_size : 30
+			color : 1,1,1,1
+			size_hint : .3, .05
+			pos_hint : {'x':.325,'y':.5}
+		Image:
+			id : im
+			source : root.main_image
+			size_hint : .6,.7
+			pos_hint : {'x':.2, 'y': .5}
+			allow_stretch : True
+		TextInput:
+			id : guess
+			text : "Enter Word Here"
+			background_normal : ""
+			background_color : .86,.86,.86,1
+			size_hint : .392,.15
+			pos_hint : {"right" : .99}
+			multiline : False
+			on_text_validate:
+				root.process_guess(guess.text)
+
+<Win>:
+	name : "win"
+
+<Lose>:
+	name : "lose"
+
+<AlphaButton>:
+	color : 0,0,0,1
+	background_color : 1,1,1,1
+	
+<Skull>
+	source : "Pictures/Skull.png"
+	size_hint : [.1,.1]
+	allow_stretch : True	
+	color : [1,1,1,1]
+<Button>:
+	background_normal : ""

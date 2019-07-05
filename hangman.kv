@@ -19,7 +19,7 @@
 		Button: 
 			id: btna
 			text: "Start Game"
-			font_name: 'C:/Windows/Fonts/ALGER.ttf'
+			font_name: 'Fonts/ALGER.ttf'
 			font_size:40
 			pos_hint: {"x":.35, "top":.65}
 			size_hint : .3,.3
@@ -37,10 +37,19 @@
 
 <ThirdWindow>:
 	name: "third"
-
-	
-	
-	
+	RelativeLayout:
+		id: layout
+		Image : 
+			source : ""
+			size_hint : .6,.7, 
+			pos_hint : {'x':.2, 'y': .5} 
+			allow_stretch : True
+		Label:
+			text : root.placeholder
+			font_size : 30
+			color : 1,1,1,1
+			size_hint :  .3, .05
+			pos_hint : {'x':.325,'y':.5}
 	
 <Win>:
 	name: "win"
@@ -48,7 +57,7 @@
 	Button:
 		id: forth_label
 		text: "You Win"
-		font_name: 'C:/Windows/Fonts/LSANS.ttf'
+		font_name: 'Fonts/LSANS.ttf'
 		font_size:40
 		on_release: 
 			root.test()
@@ -60,11 +69,17 @@
 <Lose>:
 	name: "lose"
 	id: "wassup"
-	Button:
-		id: fifth_label
-		text: "You Lose"
-		on_release: 
-			root.test()
-			app.root.current = "third"
-		color : 1,1,1,1
+	FloatLayout:
+		id: float
+		Button:
+			id: fifth_label
+			text: "You Lose"
+			on_release: 
+				root.test()
+				app.root.current = "third"
+			color : 0,0,0,1
+			size_hint : .4,.4
+			pos_hint : {"top": 1, "x": .4}
+		
+
 
