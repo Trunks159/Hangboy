@@ -145,18 +145,13 @@ class Game(Screen):
 		self.count = false_count(self.tf_log)
 
 		if '_' not in g.placeholder: sm.current = "win" 
-
-		
 			
 class Win(Screen):
 	pass	
 
-
 class Lose(Screen):
 	pass
 		
-
-
 class AlphaButton(Button): #blueprint for my special buttons that delete themselves on touch		
 				
     def on_touch_down(self, touch):
@@ -166,7 +161,6 @@ class AlphaButton(Button): #blueprint for my special buttons that delete themsel
             btn_info = {"text" : self.text, id : self.id, "pos_hint" : self.pos_hint, "size_hint": self.size_hint} #stores info of button in dictionary before destroying itself
             g.deleted_buttons.append(btn_info)
             self.parent.remove_widget(self)
-            
             
 class Skull(Image):
 	pass
